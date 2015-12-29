@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+set timeout 10
+set dencmd [lindex $argv 0]
+log_user 0
+
+spawn telnet 192.168.0.34
+expect "Trying"
+expect {
+  timeout {
+    send_user "\rTimeout waiting for Denon response.\r"
+    send_user "$expect_out(buffer)\r"
+    exit
+  }
+  "Connection refused" {
+    send_user "unable to connect, remember Denon only accepts one telnet connection\n"
+    exit
+  }
+  "BridgeCo AG Telnet server\r\n" {
+  set timeout 2
+  send "$dencmd\r"
+  expect "$dencmd\r\n"
+  expect "*\r"
+  send_user "$expect_out(buffer)\n"
+  }
+}
+exit
