@@ -3,6 +3,9 @@ HTTP examples:
 Status
 http://192.168.0.120/goform/formMainZone_MainZoneXml.xml
 
+Filtered:
+`curl -s "http://$domoticzIP:8080/json.htm?type=devices&rid=$switchID" | grep -oP '(?<="Status" : ").*(?=",)'`
+
 volume up: 
 http://192.168.0.120/MainZone/index.put.asp?cmd0=PutMasterVolumeBtn/>
 
