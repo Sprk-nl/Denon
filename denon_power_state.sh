@@ -2,9 +2,9 @@
 # A file for Domoticz to check if the Denon receiver and a virtual switch have the correct state.
 # Run this script in cron every minute.
 
-switchID=35
-domoticzIP=192.168.0.16
-denonIP=192.168.0.34
+switchID=[SWITCH-ID]
+domoticzIP=[IP-ADDRESS]
+denonIP=[IP-ADDRESS]
 
   DENONPOWER=`curl -s http://$denonIP/goform/formMainZone_MainZoneXml.xml | grep -oP '(?<=<Power><value>).*(?=</value)'`
   echo Denon status is $DENONPOWER
