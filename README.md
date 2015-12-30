@@ -1,4 +1,4 @@
-# Denon
+# Remote Control for Denon
 
 A Denon receiver type 3310 for example can be controlled via serial, telnet or http requests.
 
