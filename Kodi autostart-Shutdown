@@ -1,0 +1,29 @@
+Kodi Openelec:
+
+/storage/.config/autostart.sh
+
+(
+# powering on Denon receiver
+curl -s "192.168.0.256:8080/json.htm?type=command&param=switchlight&idx=35&switchcmd=On"
+sleep 2
+# changing input to Kodi Input
+curl -s "192.168.0.256:8080/json.htm?type=command&param=switchlight&idx=43&switchcmd=On"
+) &
+
+/storage/.config/shutdown.sh
+
+case "$1" in
+  halt)
+    # your commands here
+    ;;
+  poweroff)
+    curl -s "192.168.0.256:8080/json.htm?type=command&param=switchlight&idx=35&switchcmd=Off"
+    curl -s "192.168.0.256:8080/json.htm?type=command&param=switchlight&idx=44&switchcmd=ON"
+    ;;
+  reboot)
+    # your commands here
+    ;;
+  *)
+    # your commands here
+    ;;
+esac
